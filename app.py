@@ -11,7 +11,7 @@ app = Flask(__name__)
 def require_permission(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if not request.headers.get('password') == env['PWD']:
+        if not request.headers.get('password') == env['API_PASSWORD']:
             return jsonify({'error':'You are not authorized!'})
 
         return f(*args, **kwargs)
